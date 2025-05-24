@@ -1,14 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-    <script type="module" crossorigin src="/assets/index-4OqVeVCQ.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-wRfQzMIw.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFC Test Page</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 600px; 
+            margin: 50px auto; 
+            padding: 20px;
+            text-align: center;
+        }
+        .card { 
+            background: #f0f0f0; 
+            padding: 20px; 
+            border-radius: 10px; 
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>�� K-Pop NFC Test Page</h1>
+    <div class="card">
+        <h2 id="cardTitle">Loading...</h2>
+        <p id="cardInfo">Checking URL parameters...</p>
+        <button onclick="testWallet()">Test Wallet Connection</button>
+    </div>
+    
+    <script>
+        // Get UID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const uid = urlParams.get('uid');
+        
+        if (uid) {
+            document.getElementById('cardTitle').textContent = 'Card Found: ' + uid;
+            document.getElementById('cardInfo').textContent = 'NFC tap detected! Card UID: ' + uid;
+        } else {
+            document.getElementById('cardTitle').textContent = 'No Card Detected';
+            document.getElementById('cardInfo').textContent = 'Add ?uid=TWICE-001 to URL to test';
+        }
+        
+        function testWallet() {
+            if (typeof window.ethereum !== 'undefined') {
+                alert('MetaMask detected!');
+            } else {
+                alert('Please install MetaMask mobile app');
+            }
+        }
+    </script>
+</body>
 </html>
