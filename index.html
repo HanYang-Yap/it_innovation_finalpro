@@ -1,50 +1,14 @@
-cat > index.html << 'EOF'
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>K-Pop NFC Test</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
-        .container { background: white; color: #333; padding: 30px; border-radius: 20px; max-width: 500px; margin: 0 auto; }
-        img { width: 200px; height: 250px; border-radius: 15px; margin: 20px; }
-        .btn { background: #667eea; color: white; padding: 15px 30px; border: none; border-radius: 10px; font-size: 16px; cursor: pointer; margin: 10px; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>🎵 K-Pop NFC Card</h1>
-        <img src="https://64.media.tumblr.com/bb3a5e8ae80f634268eeb37a8ebf014d/tumblr_ofiw1lN4jS1ujcaa1o1_1280.jpg" alt="Tzuyu">
-        <h2>Tzuyu - TWICE</h2>
-        <p>Card ID: <span id="cardId">TWICE-001</span></p>
-        <button class="btn" onclick="connectWallet()">🔗 Connect MetaMask</button>
-        <button class="btn" onclick="bindCard()">🎁 Bind Card</button>
-        <div id="status" style="margin-top: 20px;"></div>
-    </div>
-    
-    <script>
-        // Get UID from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const uid = urlParams.get('uid') || 'TWICE-001';
-        document.getElementById('cardId').textContent = uid;
-        
-        async function connectWallet() {
-            if (typeof window.ethereum !== 'undefined') {
-                try {
-                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                    document.getElementById('status').innerHTML = `<p style="color: green;">✅ Connected: ${accounts[0].slice(0, 6)}...${accounts[0].slice(-4)}</p>`;
-                } catch (error) {
-                    document.getElementById('status').innerHTML = `<p style="color: red;">❌ Connection failed</p>`;
-                }
-            } else {
-                document.getElementById('status').innerHTML = `<p style="color: red;">❌ Please install MetaMask</p>`;
-            }
-        }
-        
-        function bindCard() {
-            document.getElementById('status').innerHTML = `<p style="color: blue;">🔄 Card binding simulation - This would connect to blockchain!</p>`;
-        }
-    </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+    <script type="module" crossorigin src="/assets/index-4OqVeVCQ.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-wRfQzMIw.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>
